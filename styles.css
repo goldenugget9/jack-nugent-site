@@ -156,10 +156,10 @@ html.dark .btn:hover{color:#fff}
 }
 @media (max-width: 640px){
   .nav-toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:transparent;color:var(--text);padding:8px 10px;border-radius:10px}
-  .nav-menu{position:absolute;right:16px;top:60px;background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;flex-direction:column;gap:0;overflow:hidden;opacity:0;pointer-events:none;transform:translateY(-6px);transition:.2s ease}
+  .nav-menu{position:absolute;left:50%;right:auto;top:60px;background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;flex-direction:column;gap:0;overflow:hidden;opacity:0;pointer-events:none;transform:translate(-50%, -6px);transition:.2s ease;z-index:110;min-width:240px}
   .nav-menu li{border-top:1px solid var(--border)}
   .nav-menu a{display:block;padding:12px 16px}
-  .nav-menu.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+  .nav-menu.open{opacity:1;pointer-events:auto;transform:translate(-50%, 0)}
   .skills-grid{grid-template-columns:1fr}
   .projects{grid-template-columns:1fr}
   .footer-info{display:none}
