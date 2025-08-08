@@ -1,0 +1,156 @@
+:root{--bg:#f8fafc;--bg-2:#f1f5f9;--bg-3:#ffffff;--bg-elev:#ffffff;--text:#0f172a;--muted:#475569;--brand:#7c3aed;--brand-2:#06b6d4;--border:rgba(15,23,42,.12);--shadow:0 10px 30px rgba(2,6,23,.12);--radius:14px;--container:1100px;--header-h:64px;--header-bg:rgba(255,255,255,.7);--panel-bg:rgba(2,6,23,.03)}
+html.dark{--bg:#0b1220;--bg-2:#0d1527;--bg-3:#050b18;--bg-elev:#0f172a;--text:#e2e8f0;--muted:#94a3b8;--border:rgba(148,163,184,.25);--shadow:0 10px 30px rgba(2,6,23,.25);--header-bg:rgba(2,6,23,.55);--panel-bg:rgba(255,255,255,.03)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 60%,var(--bg-3) 100%);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--container);margin:0 auto;padding:0 24px}
+.section{padding:88px 0;border-top:1px solid var(--border)}
+.section.alt{background:var(--panel-bg)}
+
+.site-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);z-index:100;backdrop-filter:saturate(140%) blur(10px);background:var(--header-bg);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:14px 24px;transition:background .25s ease,border-color .25s ease}
+.site-header.at-top{background:transparent;border-color:transparent}
+.brand{display:flex;gap:10px;align-items:center}
+.brand-mark{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;font-weight:800}
+.brand-text{font-weight:700}
+.nav-toggle{display:none}
+.nav-menu{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.nav-menu a{display:inline-block;position:relative;transition:transform .15s ease}
+.nav-menu a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:radial-gradient(120px 20px at var(--ux,50%) 50%, color-mix(in srgb,var(--brand) 60%, transparent), transparent 60%);opacity:0;transition:opacity .15s ease;pointer-events:none}
+.nav-menu a:hover::after{opacity:1}
+.nav-menu a:hover{transform:translateY(-2px)}
+.actions{display:flex;align-items:center;gap:10px}
+.theme-toggle{background:transparent;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:10px;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:var(--panel-bg);background-clip:padding-box;transition:.2s ease;box-shadow:none;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));border:0;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08), var(--shadow)}
+/* Composited mouse-follow highlight for primary buttons (no overlay) */
+.btn.primary:hover{
+  background:
+    radial-gradient(180% 180% at var(--px,50%) var(--py,50%), var(--brand) 0%, var(--brand-2) 70%),
+    linear-gradient(135deg,var(--brand),var(--brand-2));
+}
+.btn.small{padding:8px 12px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.badge{border:1px solid var(--border);padding:6px 10px;border-radius:999px;color:var(--muted)}
+
+.hero{padding-top:calc(120px + var(--header-h));padding-bottom:120px;background:radial-gradient(1000px 400px at 20% -10%, rgba(124,58,237,.18), transparent),radial-gradient(800px 300px at 80% 10%, rgba(6,182,212,.15), transparent)}
+.eyebrow{color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.hero h1{font-family:"DM Serif Display",Georgia,serif;font-size:clamp(36px,5vw,58px);line-height:1.1;margin:.25em 0 .35em}
+.lead{max-width:70ch;color:color-mix(in srgb,var(--text) 72%, transparent)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+
+.grid.two{display:grid;grid-template-columns:1.2fr .8fr;gap:32px}
+.card{background:var(--panel-bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden;isolation:isolate}
+.card.highlight{background:linear-gradient(180deg,color-mix(in srgb,var(--brand) 20%, transparent),color-mix(in srgb,var(--brand-2) 16%, transparent))}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:0}
+.facts dt{color:var(--muted)}
+.checklist{padding-left:18px}
+
+.timeline{display:grid;gap:22px}
+.timeline-item{padding:22px;border:1px solid var(--border);border-radius:var(--radius);background:var(--panel-bg);position:relative;overflow:hidden;isolation:isolate}
+.timeline-item header{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.timeline-item h3{margin:0}
+.timeline-item .meta{color:var(--muted)}
+.timeline-item ul{margin-top:10px}
+
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.skill-card{border:1px solid var(--border);border-radius:var(--radius);padding:18px;background:var(--panel-bg);position:relative;overflow:hidden;isolation:isolate}
+.skill-card h4{margin:0 0 6px}
+
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.project-card{border:1px solid var(--border);border-radius:var(--radius);background:var(--panel-bg);display:flex;flex-direction:column;min-height:220px;position:relative;overflow:hidden;isolation:isolate}
+.project-body{padding:18px}
+.bullets{margin:10px 0 0}
+.link{color:#4338ca;text-decoration:underline}
+
+.site-footer{border-top:1px solid var(--border);padding:24px 0;background:var(--panel-bg)}
+.footer-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.avatar{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;font-weight:800}
+.footer-actions{display:flex;gap:10px}
+
+.contact-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.contact-list li{display:flex;align-items:center;justify-content:space-between;border-bottom:1px dashed var(--border);padding:8px 0}
+.contact-list span{color:var(--muted)}
+
+/* Gradient-follow button */
+.btn{isolation:isolate}
+.btn::before{content:"";position:absolute;inset:-2px;border-radius:inherit;background:transparent;transition:opacity .25s ease, background .05s linear;opacity:0;z-index:-1;pointer-events:none}
+/* show gradient on hover */
+.btn:not(.primary):hover::before{opacity:1;background:radial-gradient(180% 180% at var(--px,50%) var(--py,50%), var(--brand) 0%, var(--brand-2) 70%)}
+.btn:not(.primary):hover{border-color:transparent;color:var(--text)}
+html.dark .btn:hover{color:#fff}
+.btn.primary:hover{color:#fff}
+/* never show overlay on primary gradient buttons */
+.btn.primary::before{display:none}
+
+/* When gradient overlay is active on buttons in light mode, keep text white for contrast */
+.btn:not(.primary):not(.no-gradient):hover{color:#fff}
+
+/* Disable gradient overlay for specific buttons */
+.btn.no-gradient::before{display:none}
+.btn.no-gradient{background:var(--panel-bg);border-color:var(--border)}
+.btn.no-gradient:hover{background:color-mix(in srgb, var(--brand) 14%, var(--panel-bg)); color:var(--text); box-shadow:var(--shadow)}
+
+/* Gradient-follow effect for cards */
+.card:not(.highlight)::before,
+.timeline-item::before,
+.skill-card::before,
+.project-card::before{content:"";position:absolute;inset:-2px;border-radius:inherit;background:transparent;transition:opacity .25s ease, background .05s linear;opacity:0;z-index:0;pointer-events:none}
+.card:not(.highlight):hover::before,
+.timeline-item:hover::before,
+.skill-card:hover::before,
+.project-card:hover::before{opacity:1;background:radial-gradient(farthest-corner at var(--ax,50%) var(--ay,50%), var(--brand) 0%, color-mix(in srgb,var(--brand) 10%, var(--brand-2)) 40%, var(--brand-2) 100%)}
+.card:hover,
+.timeline-item:hover,
+.skill-card:hover,
+.project-card:hover{border-color:transparent}
+
+/* Force unified large cursor-follow gradient on all cards */
+.card:not(.highlight):hover::before,
+.timeline-item:hover::before,
+.skill-card:hover::before,
+.project-card:hover::before{
+  opacity:1;
+  background:radial-gradient(280% 280% at var(--px,50%) var(--py,50%), var(--brand) 0%, var(--brand-2) 70%) !important;
+}
+
+/* Keep text readable (white) when hover gradients are active (both themes) */
+.card:not(.highlight):hover,
+.timeline-item:hover,
+.skill-card:hover,
+.project-card:hover{color:#fff}
+.timeline-item:hover .meta{color:#f1f5f9}
+.card:not(.highlight):hover a,
+.timeline-item:hover a,
+.skill-card:hover a,
+.project-card:hover a{color:#fff}
+.card:not(.highlight):hover .btn,
+.timeline-item:hover .btn,
+.skill-card:hover .btn,
+.project-card:hover .btn{color:#fff}
+.card:not(.highlight):hover .btn.no-gradient,
+.timeline-item:hover .btn.no-gradient,
+.skill-card:hover .btn.no-gradient,
+.project-card:hover .btn.no-gradient{color:#fff;border-color:transparent}
+
+/* Ensure card content layers above gradient */
+.card > *,
+.timeline-item > *,
+.skill-card > *,
+.project-card > * { position: relative; z-index: 1; }
+
+@media (max-width: 950px){
+  .grid.two{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .projects{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width: 640px){
+  .nav-toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:transparent;color:var(--text);padding:8px 10px;border-radius:10px}
+  .nav-menu{position:absolute;right:16px;top:60px;background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;flex-direction:column;gap:0;overflow:hidden;opacity:0;pointer-events:none;transform:translateY(-6px);transition:.2s ease}
+  .nav-menu li{border-top:1px solid var(--border)}
+  .nav-menu a{display:block;padding:12px 16px}
+  .nav-menu.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+  .skills-grid{grid-template-columns:1fr}
+  .projects{grid-template-columns:1fr}
+} 
