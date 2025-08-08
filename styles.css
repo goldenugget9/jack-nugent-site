@@ -153,4 +153,5 @@ html.dark .btn:hover{color:#fff}
   .nav-menu.open{opacity:1;pointer-events:auto;transform:translateY(0)}
   .skills-grid{grid-template-columns:1fr}
   .projects{grid-template-columns:1fr}
+  .footer-info{display:none}
 } 
