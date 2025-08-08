@@ -1,14 +1,21 @@
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 const userTheme = localStorage.getItem('theme');
-if ((userTheme === 'dark') || (!userTheme && prefersDark)) {
-  document.documentElement.classList.add('dark');
-}
-
+const docEl = document.documentElement;
 const themeToggle = document.getElementById('theme-toggle');
+
+// Default to light; only enable dark if user explicitly chose it
+if (userTheme === 'dark') {
+  docEl.classList.add('dark');
+} else {
+  docEl.classList.remove('dark');
+}
+if (themeToggle) themeToggle.setAttribute('aria-checked', String(docEl.classList.contains('dark')));
+
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark');
+    const isDark = docEl.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    themeToggle.setAttribute('aria-checked', String(isDark));
   });
 }
 
@@ -30,22 +37,6 @@ if (navToggle && navMenu) {
   });
   navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
 }
-
-// Mouse-follow underline across nav
-const navMenuEl = document.querySelector('.nav-menu');
-if (navMenuEl) {
-  navMenuEl.addEventListener('mousemove', (e) => {
-    const r = navMenuEl.getBoundingClientRect();
-    const ux = ((e.clientX - r.left) / r.width) * 100;
-    navMenuEl.style.setProperty('--ux', ux + '%');
-  });
-}
-
-// Remove per-link handlers if present
-document.querySelectorAll('.nav-menu a').forEach((link)=>{
-  link.onmousemove = null;
-  link.onmouseleave = null;
-});
 
 const observer = new IntersectionObserver((entries) => {
   for (const e of entries) {
@@ -90,22 +81,21 @@ if (primaryButtons.length) attachFollowGradient(primaryButtons);
 const gradientButtons = document.querySelectorAll('.btn:not(.primary)');
 if (gradientButtons.length) attachFollowGradient(gradientButtons);
 
-// Reattach for all hoverable cards to be safe
-const hoverCards2 = document.querySelectorAll('.card, .timeline-item, .skill-card, .project-card');
-if (hoverCards2.length) {
-  hoverCards2.forEach((el)=>{
-    const handler = (e)=>{
-      const rect = el.getBoundingClientRect();
-      const px = ((e.clientX - rect.left)/rect.width)*100;
-      const py = ((e.clientY - rect.top)/rect.height)*100;
-      el.style.setProperty('--px', `${px}%`);
-      el.style.setProperty('--py', `${py}%`);
-    };
-    el.addEventListener('pointermove', handler);
-    el.addEventListener('mousemove', handler);
-    el.addEventListener('mouseleave', ()=>{
-      el.style.removeProperty('--px');
-      el.style.removeProperty('--py');
-    });
+const hoverCards = document.querySelectorAll('.card, .timeline-item, .skill-card, .project-card');
+if (hoverCards.length) attachFollowGradient(hoverCards);
+
+// Mouse-follow underline across nav
+const navMenuEl = document.querySelector('.nav-menu');
+if (navMenuEl) {
+  navMenuEl.addEventListener('mousemove', (e) => {
+    const r = navMenuEl.getBoundingClientRect();
+    const ux = ((e.clientX - r.left) / r.width) * 100;
+    navMenuEl.style.setProperty('--ux', ux + '%');
   });
-} 
+}
+
+// Remove per-link handlers if present
+document.querySelectorAll('.nav-menu a').forEach((link)=>{
+  link.onmousemove = null;
+  link.onmouseleave = null;
+}); 
